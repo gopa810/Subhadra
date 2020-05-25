@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Title</key>
+	<string>Vedabase Settings</string>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>FooterText</key>
+			<string>User interface settings for text screen. Set actions for various touch gestures.</string>
+			<key>Title</key>
+			<string>Text Screen</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>Values</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>Nothing</string>
+				<string>Show contents screen</string>
+				<string>Show bookmarks</string>
+				<string>Show search screen</string>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Swipe to Right</string>
+			<key>Key</key>
+			<string>ts_swipelr_action</string>
+			<key>DefaultValue</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>Values</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>Nothing</string>
+				<string>Show contents screen</string>
+				<string>Show bookmarks</string>
+				<string>Show search screen</string>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Swipe to Left</string>
+			<key>Key</key>
+			<string>ts_swiperl_action</string>
+			<key>DefaultValue</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>Values</key>
+			<array>
+				<integer>100</integer>
+				<integer>80</integer>
+				<integer>60</integer>
+				<integer>40</integer>
+				<integer>20</integer>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>Visible</string>
+				<string>80 %</string>
+				<string>60 %</string>
+				<string>40 %</string>
+				<string>20 %</string>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Bottom Menu Button</string>
+			<key>Key</key>
+			<string>ts_bit</string>
+			<key>DefaultValue</key>
+			<integer>100</integer>
+		</dict>
+		<dict>
+			<key>Values</key>
+			<array>
+				<integer>100</integer>
+				<integer>80</integer>
+				<integer>60</integer>
+				<integer>40</integer>
+				<integer>20</integer>
+				<integer>0</integer>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>Visible</string>
+				<string>80 %</string>
+				<string>60 %</string>
+				<string>40 %</string>
+				<string>20 %</string>
+				<string>Hidden</string>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Page Up/Down Buttons</string>
+			<key>Key</key>
+			<string>ts_pudit</string>
+			<key>DefaultValue</key>
+			<integer>100</integer>
+		</dict>
+		<dict>
+			<key>FooterText</key>
+			<string>User interface settings for contents screen. Set actions for various touch gestures.</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Contents Screen</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Text Size</string>
+			<key>Key</key>
+			<string>cont_text_size</string>
+			<key>DefaultValue</key>
+			<integer>3</integer>
+			<key>Titles</key>
+			<array>
+				<string>Small</string>
+				<string>Smaller</string>
+				<string>Medium</string>
+				<string>Bigger</string>
+				<string>Big</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<string>0</string>
+				<string>1</string>
+				<string>2</string>
+				<string>3</string>
+				<string>4</string>
+			</array>
+		</dict>
+		<dict>
+			<key>Values</key>
+			<array>
+				<string>-1</string>
+				<integer>1</integer>
+				<integer>2</integer>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>Ask</string>
+				<string>Expand (Go to child items)</string>
+				<string>Hide contents screen</string>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Swipe to Left</string>
+			<key>Key</key>
+			<string>cs_swipeleft_action</string>
+			<key>DefaultValue</key>
+			<integer>-1</integer>
+		</dict>
+		<dict>
+			<key>Titles</key>
+			<array>
+				<string>Ask</string>
+				<string>Go to parent item</string>
+				<string>Hide contents screen</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<string>-1</string>
+				<integer>1</integer>
+				<integer>2</integer>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Swipe to Right</string>
+			<key>Key</key>
+			<string>cs_swiperight_action</string>
+			<key>DefaultValue</key>
+			<integer>-1</integer>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Click on Text</string>
+			<key>Key</key>
+			<string>cs_item_action</string>
+			<key>DefaultValue</key>
+			<integer>1</integer>
+			<key>Titles</key>
+			<array>
+				<string>Nothing</string>
+				<string>Expand or go to text</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+			</array>
+		</dict>
+		<dict>
+			<key>Titles</key>
+			<array>
+				<string>Never</string>
+				<string>Only if folder</string>
+				<string>Only if text</string>
+				<string>Always</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Show &quot;read&quot; icon</string>
+			<key>Key</key>
+			<string>cs_goto_icon</string>
+			<key>DefaultValue</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>Values</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>Never</string>
+				<string>Only for folder</string>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Show &quot;expand&quot; icon</string>
+			<key>Key</key>
+			<string>cs_expand_icon</string>
+			<key>DefaultValue</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Bookmarks</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Icon Location</string>
+			<key>Key</key>
+			<string>cont_bkmk_pos</string>
+			<key>DefaultValue</key>
+			<integer>1</integer>
+			<key>Titles</key>
+			<array>
+				<string>None</string>
+				<string>At the top of contents</string>
+				<string>At the bottom of contents</string>
+				<string>In the Bottom Bar</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+				<string>3</string>
+			</array>
+		</dict>
+		<dict>
+			<key>FooterText</key>
+			<string>Record notes management and settings.</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Notes</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Notes Position</string>
+			<key>Key</key>
+			<string>cont_note_pos</string>
+			<key>DefaultValue</key>
+			<integer>1</integer>
+			<key>Titles</key>
+			<array>
+				<string>None</string>
+				<string>Top of Contents</string>
+				<string>Bottom of Contents</string>
+				<string>In the Bottom Bar</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+				<string>3</string>
+			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Highlighted Texts</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Highlighters Position</string>
+			<key>Key</key>
+			<string>cont_highs_pos</string>
+			<key>DefaultValue</key>
+			<integer>1</integer>
+			<key>Titles</key>
+			<array>
+				<string>None</string>
+				<string>Top of Contents</string>
+				<string>Bottom of Contents</string>
+				<string>In the Bottom Bar</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+				<string>3</string>
+			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Playlists</string>
+		</dict>
+		<dict>
+			<key>Values</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+				<string>3</string>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>None</string>
+				<string>Top of the contents</string>
+				<string>Bottom of the contents</string>
+				<string>In the Bottom Bar</string>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Icon Position</string>
+			<key>Key</key>
+			<string>cont_play_pos</string>
+			<key>DefaultValue</key>
+			<string>1</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Views</string>
+		</dict>
+		<dict>
+			<key>Values</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+				<string>3</string>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>None</string>
+				<string>Top of the contents</string>
+				<string>Bottom of the contents</string>
+				<string>In the Bottom Bar</string>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Icon Position</string>
+			<key>Key</key>
+			<string>cont_view_pos</string>
+			<key>DefaultValue</key>
+			<string>1</string>
+		</dict>
+	</array>
+	<key>StringsTable</key>
+	<string>Root</string>
+</dict>
+</plist>

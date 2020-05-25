@@ -1,0 +1,1293 @@
+{
+    "assets": [
+        {
+            "asset": "MainWindow.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "ContentTableController.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "ContentSingleItemController.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "Classes/book_icon_closed_37x37.png", 
+            "target": "book_icon_closed_37x37.png"
+        }, 
+        {
+            "asset": "Classes/book_icon_open_37x37.png", 
+            "target": "book_icon_open_37x37.png"
+        }, 
+        {
+            "asset": "Images/selected_no.png", 
+            "target": "selected_no.png"
+        }, 
+        {
+            "asset": "Images/selected_yes.png", 
+            "target": "selected_yes.png"
+        }, 
+        {
+            "asset": "Classes/VCText.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "Classes/INDEVR20.TTF", 
+            "target": "INDEVR20.TTF"
+        }, 
+        {
+            "asset": "VCHits2.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "Images/selected_both.png", 
+            "target": "selected_both.png"
+        }, 
+        {
+            "asset": "Images/book_icon_closed_57x57.png", 
+            "target": "book_icon_closed_57x57.png"
+        }, 
+        {
+            "asset": "Images/book_icon_open_57x57.png", 
+            "target": "book_icon_open_57x57.png"
+        }, 
+        {
+            "asset": "Images/text_icon_57x57.png", 
+            "target": "text_icon_57x57.png"
+        }, 
+        {
+            "asset": "Images/arrow_back.png", 
+            "target": "arrow_back.png"
+        }, 
+        {
+            "asset": "Images/arrow_forw.png", 
+            "target": "arrow_forw.png"
+        }, 
+        {
+            "asset": "Images/arrow_back_dis.png", 
+            "target": "arrow_back_dis.png"
+        }, 
+        {
+            "asset": "Images/arrow_forw_dis.png", 
+            "target": "arrow_forw_dis.png"
+        }, 
+        {
+            "asset": "FolioSelectDialog.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "Classes/ContentPageController.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "FolioSelectTableCell.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "Images/tab-content.png", 
+            "target": "tab-content.png"
+        }, 
+        {
+            "asset": "Images/tab-search.png", 
+            "target": "tab-search.png"
+        }, 
+        {
+            "asset": "Images/tab-text.png", 
+            "target": "tab-text.png"
+        }, 
+        {
+            "asset": "../91 Creating Delivery Packages/fonts/INBENB11.TTF", 
+            "target": "INBENB11.TTF"
+        }, 
+        {
+            "asset": "../91 Creating Delivery Packages/fonts/INBENI11.TTF", 
+            "target": "INBENI11.TTF"
+        }, 
+        {
+            "asset": "../91 Creating Delivery Packages/fonts/INBENO11.TTF", 
+            "target": "INBENO11.TTF"
+        }, 
+        {
+            "asset": "../91 Creating Delivery Packages/fonts/INBENR11.TTF", 
+            "target": "INBENR11.TTF"
+        }, 
+        {
+            "asset": "MantraBook-Icon-72.png", 
+            "target": "MantraBook-Icon-72.png"
+        }, 
+        {
+            "asset": "Graphics/button_normal.png", 
+            "target": "button_normal.png"
+        }, 
+        {
+            "asset": "Graphics/button_press.png", 
+            "target": "button_press.png"
+        }, 
+        {
+            "asset": "Untitled.vbstylist", 
+            "target": "Untitled.vbstylist"
+        }, 
+        {
+            "asset": "maintext.txt", 
+            "target": "maintext.txt"
+        }, 
+        {
+            "asset": "Classes/BELLCN__.TTF", 
+            "target": "BELLCN__.TTF"
+        }, 
+        {
+            "asset": "Classes/RMDEVA.TTF", 
+            "target": "RMDEVA.TTF"
+        }, 
+        {
+            "asset": "Classes/StoreViewController.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "Classes/ActiveFolioFileCell.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "Classes/DownloadedFileCell.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "Graphics/gray_line.png", 
+            "target": "gray_line.png"
+        }, 
+        {
+            "asset": "Graphics/gray_schod_right.png", 
+            "target": "gray_schod_right.png"
+        }, 
+        {
+            "asset": "Graphics/gray_schod.png", 
+            "target": "gray_schod.png"
+        }, 
+        {
+            "asset": "Classes/TextStyleViewController.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "Graphics/hdr2.png", 
+            "target": "hdr2.png"
+        }, 
+        {
+            "asset": "Graphics/popup_textsetup.png", 
+            "target": "popup_textsetup.png"
+        }, 
+        {
+            "asset": "MantraBook-Icon-144.png", 
+            "target": "MantraBook-Icon-144.png"
+        }, 
+        {
+            "asset": "icon2-72.png", 
+            "target": "icon2-72.png"
+        }, 
+        {
+            "asset": "icon2-144.png", 
+            "target": "icon2-144.png"
+        }, 
+        {
+            "asset": "Settings.bundle", 
+            "target": "Settings.bundle"
+        }, 
+        {
+            "asset": "../02 Documents/SearchExamples.htm", 
+            "target": "SearchExamples.htm"
+        }, 
+        {
+            "asset": "Classes/HighlighterSelectionDialog.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "Graphics/unified_dark_back.png", 
+            "target": "unified_dark_back.png"
+        }, 
+        {
+            "asset": "Graphics/close_icon.png", 
+            "target": "close_icon.png"
+        }, 
+        {
+            "asset": "Graphics/ClearHighlightButton.png", 
+            "target": "ClearHighlightButton.png"
+        }, 
+        {
+            "asset": "Graphics/BlackSquare.png", 
+            "target": "BlackSquare.png"
+        }, 
+        {
+            "asset": "Classes/EditNoteDialogController.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "Classes/ShowNoteViewController.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "Graphics/bkg_popup.png", 
+            "target": "bkg_popup.png"
+        }, 
+        {
+            "asset": "Graphics/text-face-sans.png", 
+            "target": "text-face-sans.png"
+        }, 
+        {
+            "asset": "Graphics/text-face-serif.png", 
+            "target": "text-face-serif.png"
+        }, 
+        {
+            "asset": "Graphics/text-line-decrease.png", 
+            "target": "text-line-decrease.png"
+        }, 
+        {
+            "asset": "Graphics/text-line-increase.png", 
+            "target": "text-line-increase.png"
+        }, 
+        {
+            "asset": "Graphics/text-size-decrease.png", 
+            "target": "text-size-decrease.png"
+        }, 
+        {
+            "asset": "Graphics/text-size-increase.png", 
+            "target": "text-size-increase.png"
+        }, 
+        {
+            "asset": "Graphics/vert-separator.png", 
+            "target": "vert-separator.png"
+        }, 
+        {
+            "asset": "Graphics/text-bookmarks.png", 
+            "target": "text-bookmarks.png"
+        }, 
+        {
+            "asset": "Classes/BookmarkIntroDialog.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "Graphics/bookmark_add_1024.png", 
+            "target": "bookmark_add_1024.png"
+        }, 
+        {
+            "asset": "Graphics/bookmark_add_1024h.png", 
+            "target": "bookmark_add_1024h.png"
+        }, 
+        {
+            "asset": "Graphics/bookmark_goto_1024.png", 
+            "target": "bookmark_goto_1024.png"
+        }, 
+        {
+            "asset": "Graphics/bookmark_goto_1024h.png", 
+            "target": "bookmark_goto_1024h.png"
+        }, 
+        {
+            "asset": "Graphics/bookmark_upd_1024.png", 
+            "target": "bookmark_upd_1024.png"
+        }, 
+        {
+            "asset": "Graphics/bookmark_upd_1024h.png", 
+            "target": "bookmark_upd_1024h.png"
+        }, 
+        {
+            "asset": "Graphics/white_cancel_icon.png", 
+            "target": "white_cancel_icon.png"
+        }, 
+        {
+            "asset": "Graphics/white_ok_icon.png", 
+            "target": "white_ok_icon.png"
+        }, 
+        {
+            "asset": "Graphics/red_cancel_icon.png", 
+            "target": "red_cancel_icon.png"
+        }, 
+        {
+            "asset": "Graphics/green_ok_icon.png", 
+            "target": "green_ok_icon.png"
+        }, 
+        {
+            "asset": "Classes/BookmarkAddNewDialog.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "Classes/BookmarksEditorDialog.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "Classes/BookmarksListViewController.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "Graphics/bkmk_btn_add.png", 
+            "target": "bkmk_btn_add.png"
+        }, 
+        {
+            "asset": "Graphics/bkmk_btn_read.png", 
+            "target": "bkmk_btn_read.png"
+        }, 
+        {
+            "asset": "Graphics/bkmk_btn_upd.png", 
+            "target": "bkmk_btn_upd.png"
+        }, 
+        {
+            "asset": "icon2-57.png", 
+            "target": "icon2-57.png"
+        }, 
+        {
+            "asset": "icon2-114.png", 
+            "target": "icon2-114.png"
+        }, 
+        {
+            "asset": "Classes/BookmarkIntroDialog~iphone.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "Classes/BookmarkAddNewDialog~iphone.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "Classes/BookmarksEditorDialog~iphone.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "Classes/TextStyleViewController~iphone.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "Classes/ContentSingleItemController~iphone.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "Classes/ContentPageController~iphone.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "Classes/VCText~iphone.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "Classes/HighlighterSelectionDialog~iphone.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "Graphics/close_icon~iphone.png", 
+            "target": "close_icon~iphone.png"
+        }, 
+        {
+            "asset": "Classes/ShowNoteViewController~iphone.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "Classes/EditNoteDialogController~iphone.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "Classes/VCHits2~iphone.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "Graphics/white_line.png", 
+            "target": "white_line.png"
+        }, 
+        {
+            "asset": "Graphics/bkmk_btn_del.png", 
+            "target": "bkmk_btn_del.png"
+        }, 
+        {
+            "asset": "Graphics/white_line_vert.png", 
+            "target": "white_line_vert.png"
+        }, 
+        {
+            "asset": "Graphics/keyboard_button1.png", 
+            "target": "keyboard_button1.png"
+        }, 
+        {
+            "asset": "Graphics/keyboard_button2.png", 
+            "target": "keyboard_button2.png"
+        }, 
+        {
+            "asset": "Classes/SearchKeyboardAccessoryView.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "Classes/SearchKeyboardAccessoryView~iphone.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "../../../../../Library/Application Support/iPadFolio5/vb2012.ivd", 
+            "target": "vb2012.ivd"
+        }, 
+        {
+            "asset": "Default-568h@2x~iphone.png", 
+            "target": "Default-568h@2x~iphone.png"
+        }, 
+        {
+            "asset": "Default@2x~iphone.png", 
+            "target": "Default@2x~iphone.png"
+        }, 
+        {
+            "asset": "Default~iphone.png", 
+            "target": "Default~iphone.png"
+        }, 
+        {
+            "asset": "Default-Portrait@2x~ipad.png", 
+            "target": "Default-Portrait@2x~ipad.png"
+        }, 
+        {
+            "asset": "Default-Landscape@2x~ipad.png", 
+            "target": "Default-Landscape@2x~ipad.png"
+        }, 
+        {
+            "asset": "Default-Portrait~ipad.png", 
+            "target": "Default-Portrait~ipad.png"
+        }, 
+        {
+            "asset": "Default-Landscape~ipad.png", 
+            "target": "Default-Landscape~ipad.png"
+        }, 
+        {
+            "asset": "icon2-76.png", 
+            "target": "icon2-76.png"
+        }, 
+        {
+            "asset": "icon2-152.png", 
+            "target": "icon2-152.png"
+        }, 
+        {
+            "asset": "icon2-120.png", 
+            "target": "icon2-120.png"
+        }
+    ], 
+    "config": {
+        "APPLICATION_FULL_NAME": "VedabaseB", 
+        "APPLICATION_IDENTIFIER": "com.gpsl.vedabasec", 
+        "APPLICATION_NAME": "VedabaseB", 
+        "LONG_VERSION": "5.0", 
+        "SHORT_VERSION": "5", 
+        "TEMPLATE_VALUES": {
+            "EXECUTABLE_NAME": "VedabaseB", 
+            "PRODUCT_NAME": "VedabaseB"
+        }, 
+        "URL_SCHEME": [
+            "vbase", 
+            "vbase"
+        ]
+    }, 
+    "defines": {
+        "NS_BLOCK_ASSERTIONS": 1, 
+        "__IPHONE_OS_VERSION_MIN_REQUIRED": 50100
+    }, 
+    "deps": [
+        "UIKit", 
+        "StoreKit", 
+        "AVFoundation", 
+        "Foundation", 
+        "UIKit", 
+        "CoreGraphics", 
+        "CoreData"
+    ], 
+    "flags": [
+        "-DNS_BLOCK_ASSERTIONS=1", 
+        "-fasm-blocks", 
+        {
+            "flag": "-std=c99", 
+            "not_type": "c++"
+        }, 
+        "-fno-asm", 
+        "-fpascal-strings", 
+        "-Wno-deprecated-declarations", 
+        "-Wreturn-type", 
+        "-Wswitch", 
+        "-Wparentheses", 
+        "-Wformat", 
+        "-Wunused-value", 
+        "-Wunused-variable", 
+        {
+            "flag": "-Winvalid-offsetof", 
+            "type": "c++"
+        }, 
+        {
+            "flag": "-Wprotocol", 
+            "type": "objc"
+        }
+    ], 
+    "header_paths": [
+        {
+            "header_path": "VedabaseB-generated-files.hmap", 
+            "hmap": {}, 
+            "type": "iquote"
+        }, 
+        {
+            "header_path": "VedabaseB-own-target-headers.hmap", 
+            "hmap": {}, 
+            "type": "I"
+        }, 
+        {
+            "header_path": "VedabaseB-all-target-headers.hmap", 
+            "hmap": {}, 
+            "type": "I"
+        }, 
+        {
+            "header_path": "VedabaseB-project-headers.hmap", 
+            "hmap": {
+                "ActiveFolioFileCell.h": {
+                    "key": "ActiveFolioFileCell.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "ActiveFolioFileCell.h"
+                }, 
+                "BookmarkAddNewDialog.h": {
+                    "key": "BookmarkAddNewDialog.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "BookmarkAddNewDialog.h"
+                }, 
+                "BookmarkIntroDialog.h": {
+                    "key": "BookmarkIntroDialog.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "BookmarkIntroDialog.h"
+                }, 
+                "BookmarksEditorDialog.h": {
+                    "key": "BookmarksEditorDialog.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "BookmarksEditorDialog.h"
+                }, 
+                "BookmarksListViewController.h": {
+                    "key": "BookmarksListViewController.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "BookmarksListViewController.h"
+                }, 
+                "Constants.h": {
+                    "key": "Constants.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "Constants.h"
+                }, 
+                "ContentItemBase.h": {
+                    "key": "ContentItemBase.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "ContentItemBase.h"
+                }, 
+                "ContentItemBookmarks.h": {
+                    "key": "ContentItemBookmarks.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "ContentItemBookmarks.h"
+                }, 
+                "ContentItemDummyText.h": {
+                    "key": "ContentItemDummyText.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "ContentItemDummyText.h"
+                }, 
+                "ContentItemHighlighters.h": {
+                    "key": "ContentItemHighlighters.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "ContentItemHighlighters.h"
+                }, 
+                "ContentItemModel.h": {
+                    "key": "ContentItemModel.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "ContentItemModel.h"
+                }, 
+                "ContentItemNotes.h": {
+                    "key": "ContentItemNotes.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "ContentItemNotes.h"
+                }, 
+                "ContentPageController.h": {
+                    "key": "ContentPageController.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "ContentPageController.h"
+                }, 
+                "ContentSingleItemController.h": {
+                    "key": "ContentSingleItemController.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "ContentSingleItemController.h"
+                }, 
+                "ContentTableController.h": {
+                    "key": "ContentTableController.h", 
+                    "prefix": "./", 
+                    "suffix": "ContentTableController.h"
+                }, 
+                "DownloadedFileCell.h": {
+                    "key": "DownloadedFileCell.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "DownloadedFileCell.h"
+                }, 
+                "EditNoteDialogController.h": {
+                    "key": "EditNoteDialogController.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "EditNoteDialogController.h"
+                }, 
+                "FlatFileUtils.h": {
+                    "key": "FlatFileUtils.h", 
+                    "prefix": "../41 Shared/", 
+                    "suffix": "FlatFileUtils.h"
+                }, 
+                "FlatFolioValidator.h": {
+                    "key": "FlatFolioValidator.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "FlatFolioValidator.h"
+                }, 
+                "FolioFileActive.h": {
+                    "key": "FolioFileActive.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "FolioFileActive.h"
+                }, 
+                "FolioFileBase.h": {
+                    "key": "FolioFileBase.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "FolioFileBase.h"
+                }, 
+                "FolioFileDownloaded.h": {
+                    "key": "FolioFileDownloaded.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "FolioFileDownloaded.h"
+                }, 
+                "FolioFilesTableViewController.h": {
+                    "key": "FolioFilesTableViewController.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "FolioFilesTableViewController.h"
+                }, 
+                "FolioSelectDialog.h": {
+                    "key": "FolioSelectDialog.h", 
+                    "prefix": "./", 
+                    "suffix": "FolioSelectDialog.h"
+                }, 
+                "FolioSelectTableCell.h": {
+                    "key": "FolioSelectTableCell.h", 
+                    "prefix": "./", 
+                    "suffix": "FolioSelectTableCell.h"
+                }, 
+                "FolioTableController.h": {
+                    "key": "FolioTableController.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "FolioTableController.h"
+                }, 
+                "GPLabelTouch.h": {
+                    "key": "GPLabelTouch.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "GPLabelTouch.h"
+                }, 
+                "HighlighterSelectionDialog.h": {
+                    "key": "HighlighterSelectionDialog.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "HighlighterSelectionDialog.h"
+                }, 
+                "KeyboardAccessoryView.h": {
+                    "key": "KeyboardAccessoryView.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "KeyboardAccessoryView.h"
+                }, 
+                "SQLiteWrapper.h": {
+                    "key": "SQLiteWrapper.h", 
+                    "prefix": "../40 Shared iPad/", 
+                    "suffix": "SQLiteWrapper.h"
+                }, 
+                "SearchKeyboardAccessoryView.h": {
+                    "key": "SearchKeyboardAccessoryView.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "SearchKeyboardAccessoryView.h"
+                }, 
+                "ShowNoteViewController.h": {
+                    "key": "ShowNoteViewController.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "ShowNoteViewController.h"
+                }, 
+                "StoreViewController.h": {
+                    "key": "StoreViewController.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "StoreViewController.h"
+                }, 
+                "TGDialogController.h": {
+                    "key": "TGDialogController.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "TGDialogController.h"
+                }, 
+                "TGTabController.h": {
+                    "key": "TGTabController.h", 
+                    "prefix": "../../15 Styles Builder/MyTabController/MyTabController/", 
+                    "suffix": "TGTabController.h"
+                }, 
+                "TGTouchArea.h": {
+                    "key": "TGTouchArea.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "TGTouchArea.h"
+                }, 
+                "TextHighlighter.h": {
+                    "key": "TextHighlighter.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "TextHighlighter.h"
+                }, 
+                "TextStyleViewController.h": {
+                    "key": "TextStyleViewController.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "TextStyleViewController.h"
+                }, 
+                "VBBookmark.h": {
+                    "key": "VBBookmark.h", 
+                    "prefix": "../40 Shared iPad/", 
+                    "suffix": "VBBookmark.h"
+                }, 
+                "VBDimensions.h": {
+                    "key": "VBDimensions.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "VBDimensions.h"
+                }, 
+                "VBFindRange.h": {
+                    "key": "VBFindRange.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "VBFindRange.h"
+                }, 
+                "VBFindRangeArray.h": {
+                    "key": "VBFindRangeArray.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "VBFindRangeArray.h"
+                }, 
+                "VBFolio.h": {
+                    "key": "VBFolio.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "VBFolio.h"
+                }, 
+                "VBFolioQuery.h": {
+                    "key": "VBFolioQuery.h", 
+                    "prefix": "../40 Shared iPad/", 
+                    "suffix": "VBFolioQuery.h"
+                }, 
+                "VBFolioQueryObjects.h": {
+                    "key": "VBFolioQueryObjects.h", 
+                    "prefix": "../40 Shared iPad/", 
+                    "suffix": "VBFolioQueryObjects.h"
+                }, 
+                "VBFolioQueryOperator.h": {
+                    "key": "VBFolioQueryOperator.h", 
+                    "prefix": "../40 Shared iPad/", 
+                    "suffix": "VBFolioQueryOperator.h"
+                }, 
+                "VBFolioStorage.h": {
+                    "key": "VBFolioStorage.h", 
+                    "prefix": "../40 Shared iPad/", 
+                    "suffix": "VBFolioStorage.h"
+                }, 
+                "VBFolioStorageObjects.h": {
+                    "key": "VBFolioStorageObjects.h", 
+                    "prefix": "../40 Shared iPad/", 
+                    "suffix": "VBFolioStorageObjects.h"
+                }, 
+                "VBHighlighterAnchor.h": {
+                    "key": "VBHighlighterAnchor.h", 
+                    "prefix": "../41 Shared/", 
+                    "suffix": "VBHighlighterAnchor.h"
+                }, 
+                "VBHtmlElementsParserMachine.h": {
+                    "key": "VBHtmlElementsParserMachine.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "VBHtmlElementsParserMachine.h"
+                }, 
+                "VBMainServant.h": {
+                    "key": "VBMainServant.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "VBMainServant.h"
+                }, 
+                "VBPhraseHighlighting.h": {
+                    "key": "VBPhraseHighlighting.h", 
+                    "prefix": "../40 Shared iPad/", 
+                    "suffix": "VBPhraseHighlighting.h"
+                }, 
+                "VBRecordNotes.h": {
+                    "key": "VBRecordNotes.h", 
+                    "prefix": "../41 Shared/", 
+                    "suffix": "VBRecordNotes.h"
+                }, 
+                "VBStylesController.h": {
+                    "key": "VBStylesController.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "VBStylesController.h"
+                }, 
+                "VBStylistArchive.h": {
+                    "key": "VBStylistArchive.h", 
+                    "prefix": "../42 Shared Stylist/", 
+                    "suffix": "VBStylistArchive.h"
+                }, 
+                "VBTextParserMachine.h": {
+                    "key": "VBTextParserMachine.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "VBTextParserMachine.h"
+                }, 
+                "VBUnicodeToAsciiConverter.h": {
+                    "key": "VBUnicodeToAsciiConverter.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "VBUnicodeToAsciiConverter.h"
+                }, 
+                "VBUnicodeWordMatcher.h": {
+                    "key": "VBUnicodeWordMatcher.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "VBUnicodeWordMatcher.h"
+                }, 
+                "VBUserColors.h": {
+                    "key": "VBUserColors.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "VBUserColors.h"
+                }, 
+                "VCHits2.h": {
+                    "key": "VCHits2.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "VCHits2.h"
+                }, 
+                "VCText.h": {
+                    "key": "VCText.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "VCText.h"
+                }, 
+                "VedabaseB_Prefix.pch": {
+                    "key": "VedabaseB_Prefix.pch", 
+                    "prefix": "./", 
+                    "suffix": "VedabaseB_Prefix.pch"
+                }, 
+                "VedabaseURLProtocol.h": {
+                    "key": "VedabaseURLProtocol.h", 
+                    "prefix": "Classes/", 
+                    "suffix": "VedabaseURLProtocol.h"
+                }
+            }, 
+            "type": "iquote"
+        }
+    ], 
+    "infoplists": [
+        "./VedabaseB-Info.plist"
+    ], 
+    "libs": [
+        "sqlite3"
+    ], 
+    "modules": [], 
+    "pchs": [
+        "./VedabaseB_Prefix.pch"
+    ], 
+    "sources": [
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "../../15 Styles Builder/MyTabController/MyTabController/TGTabController.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "../40 Shared iPad/SQLiteWrapper.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "../40 Shared iPad/VBBookmark.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "../40 Shared iPad/VBFolioQuery.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "../40 Shared iPad/VBFolioQueryObjects.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "../40 Shared iPad/VBFolioQueryOperator.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "../40 Shared iPad/VBFolioStorage.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "../40 Shared iPad/VBFolioStorageObjects.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "../40 Shared iPad/VBPhraseHighlighting.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "../41 Shared/FlatFileUtils.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "../41 Shared/VBHighlighterAnchor.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "../41 Shared/VBRecordNotes.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "../42 Shared Stylist/VBStylistArchive.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/ActiveFolioFileCell.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/BookmarkAddNewDialog.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/BookmarkIntroDialog.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/BookmarksEditorDialog.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/BookmarksListViewController.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/ContentItemBase.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/ContentItemBookmarks.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/ContentItemDummyText.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/ContentItemHighlighters.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/ContentItemModel.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/ContentItemNotes.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/ContentPageController.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/ContentSingleItemController.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/DownloadedFileCell.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/EditNoteDialogController.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/FolioFileActive.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/FolioFileBase.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/FolioFileDownloaded.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/FolioFilesTableViewController.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/FolioTableController.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/GPLabelTouch.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/HighlighterSelectionDialog.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/KeyboardAccessoryView.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/SearchKeyboardAccessoryView.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/ShowNoteViewController.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/StoreViewController.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/TGDialogController.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/TGTouchArea.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/TextHighlighter.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/TextStyleViewController.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/VBDimensions.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/VBFindRange.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/VBFindRangeArray.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/VBFolio.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/VBHtmlElementsParserMachine.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/VBMainServant.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/VBStylesController.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/VBTextParserMachine.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/VBUnicodeToAsciiConverter.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/VBUnicodeWordMatcher.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/VBUserColors.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/VCHits2.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/VCText.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "Classes/VedabaseURLProtocol.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "ContentTableController.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "FolioSelectDialog.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "FolioSelectTableCell.m"
+        }, 
+        {
+            "defines": {}, 
+            "flags": [], 
+            "header_paths": [], 
+            "language": "objc", 
+            "source": "main.m"
+        }
+    ], 
+    "type": "app", 
+    "version": "1", 
+    "xcode_project": "VedabaseB.xcodeproj"
+}
