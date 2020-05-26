@@ -44,11 +44,6 @@
 }
 
 
-- (void)viewDidUnload {
-    [self setTouchArea:nil];
-    [self setModeSwitchButton:nil];
-    [super viewDidUnload];
-}
 - (IBAction)onCancel:(id)sender {
     [self closeDialog];
 }

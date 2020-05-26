@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TGTouchArea.h"
-//#import "TGDialogController.h"
+#import <WebKit/WebKit.h>
 #import "VBDialogController.h"
 
 @interface ShowNoteViewController : VBDialogController <TGTabBarTouches>
@@ -16,7 +16,7 @@
     uint32_t p_recordId;
 }
 
-@property (nonatomic,retain) IBOutlet UIWebView * popupWebView;
+@property (nonatomic,retain) IBOutlet WKWebView * popupWebView;
 @property (retain, nonatomic) IBOutlet UIButton *btnEdit;
 
 

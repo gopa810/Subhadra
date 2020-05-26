@@ -41,6 +41,7 @@
 @property int lastRecordNavigated;
 
 //@property IBOutlet UIImageView * headerBackgroundImageView;
+@property (nonatomic,readonly) UIInterfaceOrientationMask supportedInterfaceOrientations;
 @property (nonatomic, strong) CIModel * folioContent;
 @property (nonatomic, strong) SearchKeyboardAccessoryView * keyboardAccessoryViewController;
 

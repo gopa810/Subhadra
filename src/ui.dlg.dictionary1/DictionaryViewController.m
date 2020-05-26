@@ -39,9 +39,22 @@
     
 }
 
--(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+-(void)viewWillAppear:(BOOL)animated
 {
-    [self.textView rearrangeForOrientation];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationReceived:) name:UIDeviceOrientationDidChangeNotification object:nil];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(void)notificationReceived:(NSNotification *)note
+{
+    if ([note.name isEqualToString:UIDeviceOrientationDidChangeNotification])
+    {
+        [self.textView rearrangeForOrientation];
+    }
 }
 
 

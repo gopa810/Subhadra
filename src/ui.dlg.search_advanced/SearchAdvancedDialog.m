@@ -61,13 +61,9 @@
     }
 }
 
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+-(void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
-    BOOL portrait = UIInterfaceOrientationIsPortrait(toInterfaceOrientation);
-
-    //NSLog(@"willAnimateRotationToInterfaceOrientation get called");
-    
-    if (portrait)
+    if (size.height > size.width)
     {
         self.searchTextField.inputAccessoryView.hidden = NO;
     }
@@ -201,7 +197,7 @@
     [self closeDialog];
     
     
-    SEL doActionSel = @selector(doAction:);
+    SEL doActionSel = NSSelectorFromString((@"doAction:"));
     
     if (self.delegateSearch != nil && [self.delegateSearch respondsToSelector:doActionSel])
     {
@@ -209,6 +205,8 @@
                                @"search", @"action", nil];
         
         [self.delegateSearch performSelector:doActionSel withObject:dict afterDelay:0.0];
+        
+      
     }
     
     
@@ -342,28 +340,4 @@
 }
 
 
-
-
-- (void)dealloc {
-    //[_searchTextField release];
-    //[_dialogTitleLabel release];
-    //[_buttonPrevious release];
-    //[_buttonNext release];
-    //[_keyboardAccessoryViewController release];
-    //[_templateInfoPane release];
-    //[_templateNameLabel release];
-    //[_finalQueryLabel release];
-    //[super dealloc];
-}
-- (void)viewDidUnload {
-    [self setSearchTextField:nil];
-    [self setDialogTitleLabel:nil];
-    [self setButtonPrevious:nil];
-    [self setButtonNext:nil];
-    [self setKeyboardAccessoryViewController:nil];
-    [self setTemplateInfoPane:nil];
-    [self setTemplateNameLabel:nil];
-    [self setFinalQueryLabel:nil];
-    [super viewDidUnload];
-}
 @end

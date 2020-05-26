@@ -74,7 +74,8 @@
         [self.mainColor getRed:&colors[0] green:&colors[1] blue:&colors[2] alpha:&colors[3]];
         [self.mainBottomColor getRed:&colors[4] green:&colors[5] blue:&colors[6] alpha:&colors[7]];
         CGGradientRef gradient = CGGradientCreateWithColorComponents(baseSpace, colors, NULL, 2);
-        CGColorSpaceRelease(baseSpace), baseSpace = NULL;
+        CGColorSpaceRelease(baseSpace);
+        baseSpace = NULL;
         
         CGContextSaveGState(ctx);
         CGContextAddRect(ctx, mainArea);
@@ -84,7 +85,8 @@
         CGPoint endPoint = CGPointMake(CGRectGetMidX(mainArea), CGRectGetMaxY(mainArea));
         
         CGContextDrawLinearGradient(ctx, gradient, startPoint, endPoint, 0);
-        CGGradientRelease(gradient), gradient = NULL;
+        CGGradientRelease(gradient);
+        gradient = NULL;
     }
     
 }

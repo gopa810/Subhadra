@@ -384,8 +384,9 @@
         self.transNewController.view.frame = rect1;
         self.transOldController.view.frame = rectTrash;
         
-        if ([self.transNewController respondsToSelector:@selector(refreshFullScreen)]) {
-            [self.transNewController performSelector:@selector(refreshFullScreen)];
+        SEL refreshSelector = NSSelectorFromString(@"refreshFullScreen");
+        if ([self.transNewController respondsToSelector:refreshSelector]) {
+            ((void (*)(id, SEL))[self.transNewController methodForSelector:refreshSelector])(self.transNewController, refreshSelector);
         }
         /*NSLog(@"New rect: %f,%f,%f,%f\nOld Rect: %f,%f,%f,%f\n", rect1.origin.x, rect1.origin.y, rect1.size.width, rect1.size.height, rectTrash.origin.x, rectTrash.origin.y, rectTrash.size.width, rectTrash.size.height);
         */
@@ -561,35 +562,9 @@
     [viewController removeFromParentViewController];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return YES;
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskAll;
 }
 
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-    @try {
-        /*for(UIViewController * vc in self.subControllers)
-        {
-            [vc willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
-        }*/
-    }
-    @catch (NSException *exception) {
-    }
-    @finally {
-    }
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 @end

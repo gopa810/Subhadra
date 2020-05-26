@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "VBFolio.h"
-#import "FolioSelectDialog.h"
-#import <AVFoundation/AVAudioPlayer.h>
+#import <AVFoundation/AVFoundation.h>
 
 #import "TGTabController.h"
 #import "VBUserInterfaceManager.h"
@@ -24,7 +23,7 @@
 
 @interface VBMainServant : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, UIActionSheetDelegate, AVAudioPlayerDelegate> {
 
-	FolioSelectDialog * initialDialog;
+
 }
 
 @property BOOL needLoadContent;
@@ -70,9 +69,8 @@
 +(NSURL *)fakeURL;
 
 
--(void)openFolioFile:(NSDictionary *)dict;
+-(void)openFolioFile:(NSString *)dict;
 -(void)runSound:(NSData *)data;
--(void)applicationDidFinishedDownloading:(id)sender;
 
 
 +(NSString*)base64forData:(NSData*)theData;

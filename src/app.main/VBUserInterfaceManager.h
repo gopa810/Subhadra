@@ -14,7 +14,8 @@
 #import "TGTouchArea.h"
 #import "EndlessTextViewDelegate.h"
 #import "ETVDirectSource.h"
-#import <AVFoundation/AVAudioPlayer.h>
+#import <AVFoundation/AVFoundation.h>
+//#import <AVFoundation/AVAudioPlayer.h>
 #import "GetUserStringDelegate.h"
 #import "FDDrawingProperties.h"
 
@@ -88,6 +89,8 @@
 @property VBAudioControllerDialog * audioControllerDialog;
 @property DictionaryViewController * dictionaryViewController;
 
+-(void)start;
+-(void)stop;
 -(void)validateHistoryButtons;
 -(void)createUserInterface;
 -(void)insertViewController:(UIViewController *)controller

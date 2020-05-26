@@ -34,10 +34,10 @@
     NSUInteger lastContentDecoratorsToken;
 }
 
+@property(nonatomic, readonly) UIInterfaceOrientationMask supportedInterfaceOrientations;
 @property VBContentManager * contentManager;
 @property VBUserInterfaceManager * userInterfaceManager;
 @property CIModel * folioContent;
-@property CIBase * itemToRemove;
 @property id<ContentPageDelegate> contentPageDelegate;
 @property (weak) ContentPageController * parent;
 @property UILongPressGestureRecognizer * longPressRecognizer;

@@ -222,12 +222,11 @@ extern BOOL logCurrentRecord;
         //[arrTemp release];
     }
     
-    int i = tableCounter;
-    for (NSDictionary * d in array) {
-        if (i > tableCounter)
+    int i = 0;
+    for (i = 0; i < array.count; i++) {
+        if (i > 0)
             [str appendString:@", "];
-        [str appendFormat:@"words w%d, windex wi%d", i, i];
-        i++;
+        [str appendFormat:@"words w%d, windex wi%d", i+tableCounter, i+tableCounter];
     }
     [str appendString:@" where "];
     i = tableCounter;
@@ -243,14 +242,11 @@ extern BOOL logCurrentRecord;
             [str appendFormat:@"w%d.word='%@' and wi%d.wordid = w%d.uid", i, key,i, i];
         i++;
     }
-    i = tableCounter;
-    for (NSDictionary * d in array) {
-        if (i > tableCounter)
-            [str appendFormat:@" and wi%d.recid=wi%d.recid and wi%d.proximity=wi%d.proximity+1", i-1, i,i, i-1];
-        i++;
+    for (i = 1; i < array.count; i++) {
+        [str appendFormat:@" and wi%d.recid=wi%d.recid and wi%d.proximity=wi%d.proximity+1", i+tableCounter-1, i+tableCounter,i+tableCounter, i+tableCounter-1];
     }
     
-    tableCounter = i;
+    tableCounter = tableCounter + (int)array.count;
     
     return str;
 }
@@ -262,11 +258,10 @@ extern BOOL logCurrentRecord;
     [str appendFormat:@"select distinct wi%d.recid from ", tableCounter];
     
     int i = tableCounter;
-    for (NSDictionary * d in array) {
+    for (i = tableCounter; i < array.count + tableCounter; i++) {
         if (i > tableCounter)
             [str appendString:@", "];
         [str appendFormat:@"words w%d, windex wi%d", i, i];
-        i++;
     }
     [str appendString:@" where "];
     i = tableCounter;
@@ -288,10 +283,9 @@ extern BOOL logCurrentRecord;
         i++;
     }
     i = tableCounter;
-    for (NSDictionary * d in array) {
+    for (i = tableCounter; i < array.count + tableCounter; i++) {
         if (i > tableCounter)
             [str appendFormat:@" and wi%d.recid=wi%d.recid", i-1, i];
-        i++;
     }
     
     tableCounter = i;

@@ -34,8 +34,7 @@
     BOOL returnValue = NO;
     self.images = [NSDictionary dictionary];
     self.texts = [NSDictionary dictionary];
-    NSKeyedUnarchiver * ku = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-    
+    NSKeyedUnarchiver * ku = [[NSKeyedUnarchiver alloc] initForReadingFromData:data error:nil];    
     NSString * contentString = [ku decodeObjectForKey:@"content"];
     if ([contentString compare:@"VedabaseLayout"] == NSOrderedSame) {
         self.images = [ku decodeObjectForKey:@"images"];

@@ -79,15 +79,9 @@ int g_uimenu_visible = 0;
 
 -(void)viewDidLoad {
     
-    self.longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+    self.longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action: NSSelectorFromString(@"handleLongPress:")];
     
     [self.view addGestureRecognizer:self.longPressRecognizer];
-}
-
-- (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
-    self.folioContent = nil;
 }
 
 
@@ -255,9 +249,8 @@ int g_uimenu_visible = 0;
 */
 
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Override to allow orientations other than the default portrait orientation.
-    return YES;
+-(UIInterfaceOrientationMask) supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskAll;
 }
 
 
@@ -522,63 +515,6 @@ int g_uimenu_visible = 0;
 #pragma mark -
 #pragma mark Edit Menu functionality
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    VBFolio * currentFolio = [[VBMainServant instance] currentFolio];
-    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
-    if([title isEqualToString:@"Remove"])
-    {
-        if (self.itemToRemove != nil)
-        {
-            if ([self.itemToRemove class] == [CIHighlights class])
-            {
-                CIHighlights * highItem = (CIHighlights *)self.itemToRemove;
-                if (highItem.notes != nil)
-                {
-                    [highItem.notes removeAllAnchors];
-                    NSMutableArray * arr = [NSMutableArray new];
-                    [currentFolio getAllHightextChildren:highItem.notes.ID array:arr];
-                    for (VBRecordNotes * nt in arr)
-                    {
-                        [nt removeAllAnchors];
-                    }
-                    [currentFolio removeUnusedRecordNotes];
-                    [self reloadItems];
-                }
-            }
-            else if ([self.itemToRemove class] == [CINotes class])
-            {
-                CINotes * noteItem = (CINotes *)(self.itemToRemove);
-                if (noteItem.notes != nil)
-                {
-                    noteItem.notes.noteText = @"";
-                    NSMutableArray * arr = [NSMutableArray new];
-                    [currentFolio getAllNotesChildren:noteItem.notes.ID array:arr];
-                    for (VBRecordNotes * nt in arr)
-                    {
-                        [nt setNoteText:@""];
-                    }
-                    [currentFolio removeUnusedRecordNotes];
-                    [self reloadItems];
-                }
-            }
-            else if ([self.itemToRemove class] == [CIBookmarks class])
-            {
-                CIBookmarks * bookmarkItem = (CIBookmarks *)self.itemToRemove;
-                if (bookmarkItem.bookmark != nil)
-                {
-                    [currentFolio removeBookmarkWithId:bookmarkItem.bookmark.ID];
-                    [self reloadItems];
-                }
-            }
-        }
-
-
-        self.itemToRemove = nil;
-    }
-}
-
-
 -(BOOL)canPerformAction:(SEL)action withSender:(id)sender
 {
     if (action == @selector(copy:))
@@ -762,9 +698,68 @@ int g_uimenu_visible = 0;
     if ([name length] > 40) {
         name = [[name substringToIndex:39] stringByAppendingString:@"..."];
     }
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:[NSString stringWithFormat:@"Do you want to remove item with name '%@'?", name] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Remove", nil];
-    self.itemToRemove = [self.editMenuActionsData valueForKey:@"contentItemBase"];
-    [alert show];
+    /*UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:[NSString stringWithFormat:@"Do you want to remove item with name '%@'?", name] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Remove", nil];
+    [alert show];*/
+    
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Confirm" message:[NSString stringWithFormat:@"Do you want to remove item with name '%@'?", name] preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"Remove" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        CIBase * itemToRemove = [self.editMenuActionsData valueForKey:@"contentItemBase"];
+        // remove
+        if (itemToRemove != nil)
+        {
+            VBFolio * currentFolio = [VBMainServant.instance currentFolio];
+            if ([itemToRemove class] == [CIHighlights class])
+            {
+                CIHighlights * highItem = (CIHighlights *)itemToRemove;
+                if (highItem.notes != nil)
+                {
+                    [highItem.notes removeAllAnchors];
+                    NSMutableArray * arr = [NSMutableArray new];
+                    [currentFolio getAllHightextChildren:highItem.notes.ID array:arr];
+                    for (VBRecordNotes * nt in arr)
+                    {
+                        [nt removeAllAnchors];
+                    }
+                    [currentFolio removeUnusedRecordNotes];
+                    [self reloadItems];
+                }
+            }
+            else if ([itemToRemove class] == [CINotes class])
+            {
+                CINotes * noteItem = (CINotes *)(itemToRemove);
+                if (noteItem.notes != nil)
+                {
+                    noteItem.notes.noteText = @"";
+                    NSMutableArray * arr = [NSMutableArray new];
+                    [currentFolio getAllNotesChildren:noteItem.notes.ID array:arr];
+                    for (VBRecordNotes * nt in arr)
+                    {
+                        [nt setNoteText:@""];
+                    }
+                    [currentFolio removeUnusedRecordNotes];
+                    [self reloadItems];
+                }
+            }
+            else if ([itemToRemove class] == [CIBookmarks class])
+            {
+                CIBookmarks * bookmarkItem = (CIBookmarks *)itemToRemove;
+                if (bookmarkItem.bookmark != nil)
+                {
+                    [currentFolio removeBookmarkWithId:bookmarkItem.bookmark.ID];
+                    [self reloadItems];
+                }
+            }
+        }
+        [alert dismissViewControllerAnimated:YES completion:^{ }];
+    }]];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        // just cancel
+        [alert dismissViewControllerAnimated:YES completion:^{ }];
+    }]];
+
+    [self presentViewController:alert animated:YES completion:^{  }];
 }
 
 -(void)handleLongPressFromItem:(CIBase *)item

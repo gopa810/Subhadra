@@ -10,7 +10,7 @@
 #import "VBFolioStorage.h"
 #import "FlatFileUtils.h"
 #import "VBMainServant.h"
-#import "FolioFileActive.h"
+//#import "FolioFileActive.h"
 #import "VBRecordNotes.h"
 #import "VBBookmark.h"
 #import "VBUserQuery.h"
@@ -768,124 +768,57 @@ void highlightSearchWordAction1(NSArray * words, NSMutableString * strTemp, NSMu
 
 -(NSString *)shadowFilePath
 {
-    NSString * fileName = @"vedabase.sdw";
-    return [self.documentsDirectory stringByAppendingPathComponent:fileName];
+    return [self.documentsDirectory stringByAppendingPathComponent:@"vedabase.sdw"];
 }
 
-- (void)correctShadowRecordsWithMapping:(VBFolioRecordMapping *)mapping
+//
+// replace old record numbers with new record numbers
+// if old record id not found, then whole bookmark or note is removed
+//
+- (void)correctShadowRecordsWithMapping
 {
     VBFolioStorage * store = self.firstStorage;
+    int nid;
+    NSMutableArray * p = [NSMutableArray arrayWithCapacity:store.p_recordNotes.count];
     
     for (VBRecordNotes * note in store.p_recordNotes)
     {
-        note.recordId = [mapping correctionForRecord:note.recordId];
+        nid = [store correctionForRecord:note.recordId];
+        if (nid >= 0)
+        {
+            note.recordId = nid;
+            [p addObject:note];
+        }
     }
+    store.p_recordNotes = p;
+    
+    p = [NSMutableArray arrayWithCapacity:store.p_bookmarks.count];
     for (VBBookmark * bkmk in store.p_bookmarks)
     {
-        bkmk.recordId = [mapping correctionForRecord:bkmk.recordId];
-    }
-}
-
-- (void)load2014Shadow:(NSFileManager *)fm mapFile:(VBFolioRecordMapping *)pMapFile
-{
-    NSString * vb2014shadowFileName = [self.documentsDirectory stringByAppendingPathComponent:@"Untitled.sdw"];
-    if ([fm fileExistsAtPath:vb2014shadowFileName])
-    {
-        NSDictionary * data = [NSKeyedUnarchiver unarchiveObjectWithFile:vb2014shadowFileName];
-        NSArray * array = [data valueForKey:@"storages"];
-        for (NSDictionary * dict in array)
-        {
-            [self.firstStorage setDictionaryObject:dict];
-        }
-        
-        //[self setDictionaryObject:data];
-        
-        NSString * path = [[NSBundle mainBundle] pathForResource:@"vb2014diff" ofType:@"txt"];
-        if (path != nil && [fm fileExistsAtPath:path])
-        {
-            VBFolioRecordMapping * mapping = pMapFile;
-            
-            [self correctShadowRecordsWithMapping:mapping];
-            
-            [fm removeItemAtPath:vb2014shadowFileName error:NULL];
-            
-            [self saveShadow];
-        }
-        
-        NSInteger current = 1;
-        for (VBBookmark * bk in self.firstStorage.p_bookmarks)
-        {
-            bk.parentId = -1;
-            bk.ID = current;
-            
-            current++;
-        }
-        
-        current = 1;
-        
-        for (VBRecordNotes * rn in self.firstStorage.p_recordNotes)
-        {
-            rn.ID = current;
-            rn.parentId = -1;
-            
-            current ++;
+        nid = [store correctionForRecord:bkmk.recordId];
+        if (nid>=0) {
+            bkmk.recordId = nid;
+            [p addObject:bkmk];
         }
     }
+    store.p_bookmarks = p;
 }
-
 
 -(void)loadShadow
 {
-    NSFileManager * fm = [NSFileManager defaultManager];
-    VBFolioRecordMapping * pMapFile = nil;
-    NSString * pathMap = [[NSBundle mainBundle] pathForResource:@"vb2014diff" ofType:@"txt"];
-    if (pathMap != nil && [fm fileExistsAtPath:pathMap])
-    {
-        pMapFile = [VBFolioRecordMapping new];
-        [pMapFile readFile:pathMap];
-    }
+    NSFileManager * fileManager = [NSFileManager defaultManager];
 
     NSString * currentShadowFileName = [self shadowFilePath];
-    if ([fm fileExistsAtPath:currentShadowFileName])
-    {
+    NSString * vb2014shadowFileName = [self.documentsDirectory stringByAppendingPathComponent:@"Untitled.sdw"];
+
+    if ([fileManager fileExistsAtPath:currentShadowFileName]) {
         [self loadShadowFromFile:currentShadowFileName];
-    }
-    else
-    {
-        [self load2014Shadow:fm mapFile:pMapFile];
-    }
-    
-    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
-    VBFolioStorage * storage = self.firstStorage;
-    BOOL defaultBookmarks = [ud boolForKey:@"default_bookmarks_init"];
-    if (defaultBookmarks == NO || (defaultBookmarks == YES && storage.p_bookmarks.count == 0))
-    {
-        NSString * path = [[NSBundle mainBundle] pathForResource:@"bookmarks2016" ofType:@"txt"];
-        NSString * strBookmarks = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];
-        NSArray * lines = [strBookmarks componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-        for(NSString * line in lines)
-        {
-            NSArray * p = [line componentsSeparatedByString:@"\t"];
-            if (p.count == 4)
-            {
-                VBBookmark * b = [VBBookmark new];
-                b.ID = [(NSString *)p[0] integerValue];
-                b.parentId = [(NSString *)p[1] integerValue];
-                
-                // we need to do correction, because default bookmraks are valid for folio 2014
-                b.recordId = [(NSString *)p[2] intValue];
-                b.name = p[3];
-                
-                [storage.p_bookmarks addObject:b];
-            }
-        }
+    } else if ([fileManager fileExistsAtPath:vb2014shadowFileName]) {
+        [self loadShadowFromFile:vb2014shadowFileName];
+        [self correctShadowRecordsWithMapping];
+        [fileManager removeItemAtPath:vb2014shadowFileName error:NULL];
         [self saveShadow];
-        
-        [ud setBool:YES forKey:@"default_bookmarks_init"];
-        [ud synchronize];
     }
-    
-    pMapFile = nil;
 }
 
 -(BOOL)saveShadow
@@ -898,16 +831,22 @@ void highlightSearchWordAction1(NSArray * words, NSMutableString * strTemp, NSMu
     NSFileManager * manager = [NSFileManager defaultManager];
     if ([manager fileExistsAtPath:fileName])
     {
-        NSDictionary * data = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
-        [self setDictionaryObject:data];
+        NSData * archive = [NSData dataWithContentsOfFile:fileName];
+        NSError * error = nil;
+        NSDictionary * data = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSDictionary class] fromData:archive error:&error];
+        if (error == nil) {
+            [self setDictionaryObject:data];
+        }
     }
 }
 
 -(BOOL)saveShadowToFile:(NSString *)fileName
 {
     NSLog(@"saveShadowFile");
-    NSDictionary * data = [self dictionaryObject];
-    return [NSKeyedArchiver archiveRootObject:data toFile:fileName];
+    NSError * error = nil;
+    NSData * data = [NSKeyedArchiver archivedDataWithRootObject:[self dictionaryObject] requiringSecureCoding:NO error:&error];
+    [data writeToFile:fileName atomically:YES];
+    return error==nil;
 }
 
 -(NSDictionary *)dictionaryObject
@@ -1038,7 +977,7 @@ void highlightSearchWordAction1(NSArray * words, NSMutableString * strTemp, NSMu
     for (VBBookmark * vb in self.firstStorage.p_bookmarks)
     {
         if (vb.parentId == bid)
-            return vb;
+            return (NSInteger)vb;
     }
     
     return count;

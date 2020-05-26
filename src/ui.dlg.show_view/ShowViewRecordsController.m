@@ -28,18 +28,26 @@
     return self;
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notification:) name:UIDeviceOrientationDidChangeNotification object:nil];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(void)notification:(NSNotification *)note
+{
+    if ([note.name isEqualToString:UIDeviceOrientationDidChangeNotification])
+    {
+        [self.textView rearrangeForOrientation];
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-/*    self.listController = [[EndlessListViewController alloc] initWithStyle:UITableViewStylePlain];
-    self.listController.view = self.tableView;
-    self.listController.tableView = self.tableView;
-    self.listController.dataSource = self.source;
-    self.tableView.delegate = self.listController;
-    self.tableView.dataSource = self.listController;
-    self.tableView.backgroundColor = [self.delegate.skinManager colorForName:@"bodyBackground"];
-    self.listController.drawer = [VBMainServant instance].drawer;*/
     
     self.textView.delegate = self;
     self.textView.drawer = [VBMainServant instance].drawer;
@@ -56,11 +64,6 @@
     self.bottomBar.mainColor = [skin colorForName:@"darkGradientA"];
     self.bottomBar.mainBottomColor = [skin colorForName:@"darkGradientB"];
     self.bottomBar.sides = UIRectEdgeTop;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void)setSource:(ETVRecords *)source
@@ -86,11 +89,6 @@
 
 #pragma mark -
 #pragma mark User Interface
-
--(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-    [self.textView rearrangeForOrientation];
-}
 
 -(void)setCurrentRecord:(int)recId
 {

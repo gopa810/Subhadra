@@ -50,14 +50,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidUnload {
-    [self setTextField:nil];
-    [self setTouchBack:nil];
-    [self setSaveButton:nil];
-    [super viewDidUnload];
-}
-
-
 - (IBAction)onEditingDidEnd:(id)sender {
     [self.textField resignFirstResponder];
 }

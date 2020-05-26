@@ -8,7 +8,6 @@
 
 #import "ContentPageController.h"
 #import "ContentTableController.h"
-#import "VBAlertDelegate.h"
 #import "VCHelpMainViewController.h"
 #import "ContentTableItemView.h"
 
@@ -29,6 +28,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self                                                 selector:@selector(notificationReceived:) name:kNotifyFolioOpen object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self                                                 selector:@selector(notificationReceived:) name:UIDeviceOrientationDidChangeNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self                                                 selector:@selector(notificationReceived:) name:kNotifyCmdSelectFolio object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationReceived:) name:@"VBContentManager_changedFolio" object:nil];
         isFullScreen = NO;
@@ -37,6 +37,7 @@
     }
     return self;
 }
+
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
@@ -98,15 +99,10 @@
     [help openDialog];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Overriden to allow any orientation.
-    return YES;
+-(UIInterfaceOrientationMask) supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskAll;
 }
 
--(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-    [self.tableController.tableView reloadData];
-}
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
@@ -115,14 +111,6 @@
     // Release any cached data, images, etc. that aren't in use.
 }
 
-
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-    self.contentTable = nil;
-    self.tableController = nil;
-}
 
 
 #pragma mark -
@@ -140,9 +128,8 @@
             [self setPageImage:[UIImage imageWithData:[dict objectForKey:@"Image"]]];
         }
     }
-    else if ([note.name isEqualToString:kNotifyCmdSelectFolio])
-    {
-        [self performSelector:@selector(selectFolioAction:) withObject:nil afterDelay:0];
+    else if ([note.name isEqualToString:UIDeviceOrientationDidChangeNotification]) {
+        [self.tableController.tableView reloadData];
     }
     else if ([note.name isEqualToString:@"VBContentManager_changedFolio"])
     {
@@ -160,14 +147,26 @@
 
 - (void)swipeRightAction:(id)ignored
 {
-    NSInteger action = [[NSUserDefaults standardUserDefaults] integerForKey:@"cs_swiperight_action"];
+    NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+    NSInteger action = [userDefaults integerForKey:@"cs_swiperight_action"];
 
     if (action == -1)
     {
-        self.alertDelegate = [[VBAlertDelegate alloc] initWithTag:@"LR" delegate:self];
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Select Action" message:@"You are performing this swipe from left to right for the first time. Please select action you want to perform next time. If you want to perform selected action, repeat your gesture once again." delegate:self.alertDelegate cancelButtonTitle:@"Cancel this dialog" otherButtonTitles:@"Go to parent content item", @"Hide contents screen", nil];
-        [alert show];
-
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Select Action" message:@"You are performing this swipe from left to right for the first time. Please select action you want to perform next time. If you want to perform selected action, repeat your gesture once again." preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Go to parent content item" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [userDefaults setInteger:(NSInteger)1 forKey:@"cs_swiperight_action"];
+            [alert dismissViewControllerAnimated:YES completion:^{  }];
+        }]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Hide contents screen" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [userDefaults setInteger:(NSInteger)2 forKey:@"cs_swiperight_action"];
+            [alert dismissViewControllerAnimated:YES completion:^{  }];
+        }]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Cancel this dialog" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            // cancel dialog
+            [alert dismissViewControllerAnimated:YES completion:^{  }];
+        }]];
+        [self presentViewController:alert animated:YES completion:^{  }];
+ 
     }
     else if (action == 1)
     {
@@ -184,13 +183,25 @@
 
 - (void)swipeLeftAction:(UISwipeGestureRecognizer *)recognizer
 {
-    NSInteger action = [[NSUserDefaults standardUserDefaults] integerForKey:@"cs_swipeleft_action"];
+    NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+    NSInteger action = [userDefaults integerForKey:@"cs_swipeleft_action"];
     
     if (action == -1)
     {
-        self.alertDelegate = [[VBAlertDelegate alloc] initWithTag:@"RL" delegate:self];
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Select Action" message:@"You are performing this swipe from right to left for the first time. Please select action you want to perform next time. If you want to perform selected action, repeat your gesture once again." delegate:self.alertDelegate cancelButtonTitle:@"Cancel this dialog" otherButtonTitles:@"Expand item", @"Hide contents screen", nil];
-        [alert show];
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Select Action" message:@"You are performing this swipe from right to left for the first time. Please select action you want to perform next time. If you want to perform selected action, repeat your gesture once again." preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Expand item" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [userDefaults setInteger:(NSInteger)1 forKey:@"cs_swipeleft_action"];
+            [alert dismissViewControllerAnimated:YES completion:^{  }];
+        }]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Hide contents screen" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [userDefaults setInteger:(NSInteger)2 forKey:@"cs_swipeleft_action"];
+            [alert dismissViewControllerAnimated:YES completion:^{  }];
+        }]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Cancel this dialog" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            // cancel dialog
+            [alert dismissViewControllerAnimated:YES completion:^{  }];
+        }]];
+        [self presentViewController:alert animated:YES completion:^{  }];
     }
     else if (action == 1)
     {
@@ -205,21 +216,6 @@
         }
     }
 }
-
--(void)alertViewTag:(NSString *)tag clickedButtonIndex:(NSInteger)btnIndex
-{
-    NSUserDefaults * settings = [NSUserDefaults standardUserDefaults];
-    
-    if ([tag isEqualToString:@"LR"])
-    {
-        [settings setInteger:btnIndex forKey:@"cs_swiperight_action"];
-    }
-    else if ([tag isEqualToString:@"RL"])
-    {
-        [settings setInteger:btnIndex forKey:@"cs_swipeleft_action"];
-    }
-}
-
 
 -(void)setPageTitle:(NSString *)aTitle
 {

@@ -99,8 +99,5 @@
 }
 
 
-- (void)viewDidUnload {
-    [self setBtnEdit:nil];
-    [super viewDidUnload];
-}
+
 @end

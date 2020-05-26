@@ -36,12 +36,12 @@ NSMutableDictionary * g_normalizeMimeMap;
 +(NSString *)encodeLinkSafeString:(NSString *)string
 {
     NSString * str = [string stringByReplacingOccurrencesOfString:@"/" withString:@"%2F"];
-    return [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    return [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]];
 }
 
 +(NSString *)decodeLinkSafeString:(NSString *)string
 {
-    NSString * str = [string stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString * str = [string stringByRemovingPercentEncoding];
     return [str stringByReplacingOccurrencesOfString:@"%2F" withString:@"/"];
 }
 

@@ -122,8 +122,4 @@
 }
 
 
-- (void)viewDidUnload {
-    [self setButtonsContainerView:nil];
-    [super viewDidUnload];
-}
 @end

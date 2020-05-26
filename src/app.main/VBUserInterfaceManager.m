@@ -11,7 +11,7 @@
 #import "ContentPageController.h"
 #import "VCText.h"
 #import "VCHits2.h"
-#import "StoreViewController.h"
+//#import "StoreViewController.h"
 #import "VBMainServant.h"
 #import "BottomBarViewController.h"
 #import "BottomBarItem.h"
@@ -98,12 +98,6 @@
 -(UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskAll;
-}
-
-// for iOS 5.0
--(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    return YES;
 }
 
 
@@ -979,8 +973,10 @@
 -(void)onErrorUnreachableDestination:(NSString *)dest
 {
     NSString * messageText = [NSString stringWithFormat:@"Target of this link is not available, because it is in different folio package which you did not load. Unavailable target: %@", dest];
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Trying to reach another package?" message:messageText delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-    [alert show];
+    
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Trying to reach another package?" message:messageText preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) { }]];
+    [self presentViewController:alert animated:YES completion:^{ }];
 }
 
 -(void)createUserInterface
@@ -1082,11 +1078,30 @@
     tempView1.hidden = !tempView1.hidden;
 }
 
+-(void)start
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationReceived:) name:UIDeviceOrientationDidChangeNotification object:nil];
+    
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+}
 
--(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+-(void)stop
+{
+    [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
+}
+
+-(void)notificationReceived:(NSNotification *)note
+{
+    if ([note.name isEqualToString:UIDeviceOrientationDidChangeNotification]) {
+        [self deviceDidChangeOrientation:[UIDevice.currentDevice orientation]];
+    }
+}
+
+
+-(void)deviceDidChangeOrientation:(UIDeviceOrientation)deviceOrientation
 {
     NSString * key = @"EndlessMargins";
-    if (UIDeviceOrientationIsPortrait(fromInterfaceOrientation))
+    if (UIDeviceOrientationIsLandscape(deviceOrientation))
         key = @"EndlessMarginsLandscape";
     
     NSUserDefaults * user = [NSUserDefaults standardUserDefaults];
@@ -1502,7 +1517,10 @@
         if (![urlString hasPrefix:@"http://"]) {
             urlString = [NSString stringWithFormat:@"http://%@", urlString];
         }
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+        NSDictionary * options_d = [NSDictionary dictionary];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString] options:options_d completionHandler:^(BOOL success) {
+            // open web completed
+        }];
     }
     else {
         NSLog(@"LINK TYPE '%@'is unknown\n", type);

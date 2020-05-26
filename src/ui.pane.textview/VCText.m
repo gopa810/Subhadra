@@ -50,7 +50,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationReceived:) name:kNotifyCmdOpenUrl object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationReceived:) name:kNotifyCmdShowHtml object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationReceived:) name:kNotifyCmdEditNote object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationReceived:) name:UIDeviceOrientationDidChangeNotification object:nil];
 }
 
 
@@ -112,6 +112,10 @@
     {
         NSString * str = [[note.userInfo objectForKey:@"record"] description];
         [self editNote:[str intValue]];
+    }
+    else if ([note.name isEqualToString:UIDeviceOrientationDidChangeNotification])
+    {
+         [self.textView setNeedsDisplay];
     }
 }
 
@@ -195,10 +199,16 @@
 
 -(void)onErrorUnreachableDestination:(NSString *)dest
 {
-    [self performSelector:@selector(hideLoadingNote) withObject:nil afterDelay:0.4];
     NSString * messageText = [NSString stringWithFormat:@"Target of this link is not available, because it is in different folio package which you did not load. Unavailable target: %@", dest];
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Trying to reach another package?" message:messageText delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-    [alert show];
+
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Trying to reach another package?" message:messageText preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [alert dismissViewControllerAnimated:YES completion:^{
+            
+        }];
+    }]];
+    [self presentViewController:alert animated:YES completion:^{ }];
+
 }
 
 -(void)performLinkAction:(NSString *)path
@@ -286,133 +296,14 @@
     [self validateHistoryButtons];
 }
 
--(void)loadCustomURLData:(NSURLRequest *)request
-{
-	NSURL *url = [request URL];
-	VBFolio *folio = [[VBMainServant instance] currentFolio];
-	NSString * path = [url path];
-	NSString * normalPath = ([path hasPrefix:@"/"]) ? [path substringFromIndex:1] : path;
-	NSString * host = [url host];
-
-	if ([host isEqual:@"files"] || [host isEqual:@"search"])
-	{
-		NSScanner * scan = [NSScanner scannerWithString:normalPath];
-		int i32;
-		BOOL success = NO;
-		if ([scan scanInt:&i32] == YES)
-		{
-            if (i32 < [[folio firstStorage] findTextCount])
-            {
-                [self loadRecord:i32  useHighlighting:([host isEqualToString:@"files"] ? NO : YES)];
-                success = YES;
-            }
-		}
-        
-        if (success == NO)
-        {
-            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Trying to reach another package?" message:@"Target of this link is not available, because it is in different folio package which you did not load." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-            
-            [alert show];
-        }
-	}
-	else if ([host isEqual:@"links"])
-	{
-		[self performLinkAction:path];
-	}
-	else if ([host compare:@"popup"] == NSOrderedSame)
-	{
-		NSString * str = [folio htmlTextForPopup:[FlatFileUtils decodeLinkSafeString:normalPath]];
-        [self showPopupWithHtmlText:str];
-	}
-    else if ([host compare:@"note"] == NSOrderedSame)
-    {
-        uint32_t recId = [[path substringFromIndex:1] intValue];
-        NSString * str = [folio htmlTextForNoteRecord:recId];
-        ShowNoteViewController * vnc = [self createNoteViewDialogController];
-        [vnc setNoteRecordId:recId];
-        [vnc.popupWebView loadHTMLString:str baseURL:[VBMainServant fakeURL]];
-        //[self showPopupWithHtmlText:str];
-    }
-    else if ([host compare:@"editnote"] == NSOrderedSame)
-    {
-        [self editNote:[[path substringFromIndex:1] intValue]];
-    }
-    else if ([host compare:@"inlinepopup"] == NSOrderedSame) {
-        NSArray * pathComponents = [normalPath componentsSeparatedByString:@"/"];
-        if ([pathComponents count] > 2) {
-            NSString * linkType = [pathComponents objectAtIndex:0];
-            NSString * objectID = [pathComponents objectAtIndex:1];
-            NSString * popupNumber = [pathComponents objectAtIndex:2];
-            //NSString * htmlText = @"";
-            NSString * htmlBody = @"";
-            //NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
-            if ([linkType compare:@"RD"] == NSOrderedSame) {
-                htmlBody = [folio text:[objectID intValue] 
-                                   forPopupNumber:[popupNumber intValue]];
-            } else if ([linkType compare:@"DP"] == NSOrderedSame) {
-                htmlBody = [folio htmlTextForPopup:[FlatFileUtils decodeLinkSafeString:objectID]
-                                    forPopupNumber:[popupNumber intValue]];
-            }
-            /*int bodySize = [defaults integerForKey:@"bodySize"];
-            bodySize = bodySize < 5 ? 14 : bodySize;
-            htmlText = [NSString stringWithFormat:@"<body style=\"font-size:%dpt\" background=\"vbase://stylist_images/background_yellow\">%@</body>", bodySize, htmlBody];*/
-            [self showPopupWithHtmlText:htmlBody];
-        }
-    }
-}
-
-
-
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request
-	navigationType:(UIWebViewNavigationType)navigationType
-{
-	NSString * strScheme = [[request URL] scheme];
-	
-	if ([strScheme isEqual:@"vbase"])
-	{
-		[self loadCustomURLData:request];
-		return NO;
-	}
-	else if ([strScheme isEqual:@"http"] || [strScheme isEqual:@"https"] || [strScheme isEqual:@"file"])
-	{
-		return YES;
-	}
-	return YES;
-}
-
-
-- (void)webViewDidFinishLoad:(UIWebView *)iwebView
-{
-    [self performSelector:@selector(hideLoadingNote) withObject:nil afterDelay:0.4];
-}
-
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
-{
-    [self performSelector:@selector(hideLoadingNote) withObject:nil afterDelay:0.4];
-}
-
--(void)showLoadingNote:(NSString *)text
-{
-}
-
--(void)hideLoadingNote
-{
-}
 
 -(BOOL)shouldAutorotate
 {
     return YES;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return YES;
-}
-
--(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-    [self.textView setNeedsDisplay];
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskAll;
 }
 
 #pragma mark -
@@ -805,17 +696,6 @@
     }
     else if ([command isEqualToString:@"showBookmarks"]) {
     }
-}
-
-
-
-#pragma mark -
-#pragma mark Popover Test Style delegate
-
-
--(BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController
-{
-    return YES;
 }
 
 

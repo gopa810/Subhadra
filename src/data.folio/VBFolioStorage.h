@@ -65,7 +65,7 @@
 -(NSDictionary *)dictionaryObject;
 -(void)setDictionaryObject:(NSDictionary *)obj;
 
-
+-(int)correctionForRecord:(int)recId;
 
 #pragma mark -
 #pragma mark Bulks

@@ -42,6 +42,8 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationReceived:) name:kNotifyFolioOpen object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationReceived:) name:kNotifyFolioContentChanged object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationReceived:) name:kNotifyCmdShowSearchResultsPage object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationReceived:) name:UIDeviceOrientationDidChangeNotification object:nil];
+
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
@@ -187,6 +189,10 @@
         //if (requestedPage != self.activePage)
         [self loadResultsPage:requestedPage];
     }
+    else if ([note.name isEqualToString:UIDeviceOrientationDidChangeNotification])
+    {
+        [self.textView rearrangeForOrientation];
+    }
 }
 
 -(void)setFolio:(VBFolio *)folio
@@ -194,15 +200,10 @@
     [self loadResultsPage:-1];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Override to allow orientations other than the default portrait orientation.
-    return YES;
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskAll;
 }
 
--(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-    [self.textView rearrangeForOrientation];
-}
 
 #pragma mark -
 #pragma mark View Delegates
@@ -355,13 +356,6 @@
     [super didReceiveMemoryWarning];
     
     // Relinquish ownership any cached data, images, etc that aren't in use.
-}
-
-- (void)viewDidUnload {
-
-    self.progressBanner = nil;
-    self.keyboardAccessoryViewController = nil;
-
 }
 
 #pragma mark -

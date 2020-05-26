@@ -36,7 +36,6 @@
 
 -(IBAction)onLinkShow:(id)sender
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"http://vedabase.home.sk"]];
 }
 
 -(IBAction)onClose:(id)sender

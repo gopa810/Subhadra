@@ -7,15 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FolioSelectDialog.h"
 #import "ContentTableController.h"
 #import "VBMainServant.h"
 #import "ContentPageDelegate.h"
-#import "VBAlertDelegate.h"
 
 @class VBContentManager, VBUserInterfaceManager;
 
-@interface ContentPageController : UIViewController <UIPopoverControllerDelegate, UIGestureRecognizerDelegate, VBAlertDelegateDelegate> {
+@interface ContentPageController : UIViewController <UIPopoverControllerDelegate, UIGestureRecognizerDelegate> {
 
 	UITableView * contentTable;
     UIView * headView;
@@ -30,12 +28,11 @@
 @property (nonatomic,retain) ContentTableController * tableController;
 @property (nonatomic,retain) IBOutlet UITableView * contentTable;
 @property (nonatomic,retain) IBOutlet UIView * headView;
+@property (nonatomic,readonly) UIInterfaceOrientationMask supportedInterfaceOrientations;
 @property IBOutlet UIButton * closeButton;
 @property IBOutlet UIButton * helpButton;
-@property (nonatomic, strong) UIPopoverController * popoverFolioController;
 @property VBContentManager * contentManager;
 @property VBUserInterfaceManager * userInterfaceManager;
-@property VBAlertDelegate * alertDelegate;
 @property int startingRecord;
 @property NSURLRequest * pendingRequest;
 

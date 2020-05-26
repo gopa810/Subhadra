@@ -15,14 +15,11 @@
 #import "VBStylistArchive.h"
 #import "ContentPageController.h"
 #import "VedabaseURLProtocol.h"
-#import "StoreViewController.h"
 #import "TGTabController.h"
 #import "VBFileManager.h"
-#import "VBProductManager.h"
 #import "VBContentManager.h"
 #import "VBFolio.h"
 #import "EndlessScrollView.h"
-#import "InitialDownloadViewController.h"
 
 #ifdef __APPLE__
 #include "TargetConditionals.h"
@@ -72,22 +69,8 @@ NSString * g_tmpDir = nil;
 
 - (void)application:(UIApplication *)application handleEventsForBackgroundURLSession:(NSString *)identifier completionHandler:(void (^)(void))completionHandler
 {
-    /*
-     Store the completion handler. The completion handler is invoked by the view controller's checkForAllDownloadsHavingCompleted method (if all the download tasks have been completed).
-     */
-    
-    self.backgroundSessionCompletionHandler = completionHandler;
 
-    // EXTRA
-    /*if (!self.downloadViewController)
-    {
-        self.downloadViewController = [[InitialDownloadViewController alloc] initWithNibName:@"InitialDownloadViewController" bundle:nil];
-        
-        self.downloadViewController.documentsDirectory = [self.fileManager documentsDirectory];
-        self.downloadViewController.view.frame = self.window.frame;
-        [self.userInterfaceManager insertViewController:self.downloadViewController fromSide:CGSizeMake(0, 0)];
-    }
-    [self.downloadViewController addCompletionHandler:completionHandler forSession:identifier];*/
+    self.backgroundSessionCompletionHandler = completionHandler;
     
 }
 
@@ -155,9 +138,7 @@ NSString * g_tmpDir = nil;
 
     [self.userInterfaceManager createUserInterface];
 
-    [self.productManager initializeManager];
-    
-	
+
     // regfister for notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(notificationReceived:)
@@ -200,33 +181,12 @@ NSString * g_tmpDir = nil;
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    if (self.currentFolio == nil && ![self.downloadViewController isDownloading])
-    {
-        if ([self.fileManager enumerateFolios]) {
-            [self openFolioFile:[self.fileManager.folioDocuments objectAtIndex:0]];
-        } else {
-            // start downloading
-            self.downloadViewController = [[InitialDownloadViewController alloc] initWithNibName:@"InitialDownloadViewController" bundle:nil];
-            
-            self.downloadViewController.documentsDirectory = [self.fileManager documentsDirectory];
-            self.downloadViewController.view.frame = self.window.frame;
-            [self.userInterfaceManager insertViewController:self.downloadViewController fromSide:CGSizeMake(0, 0)];
-        }
-    }
-}
-
--(void)applicationDidFinishedDownloading:(id)sender
-{
-    if (self.downloadViewController)
-    {
-        [self.userInterfaceManager removeViewController:self.downloadViewController
-                                                 toSide:CGSizeMake(0,0) name:@""];
-        
-        self.downloadViewController = nil;
-        // reopen folio
-        
-        if ([self.fileManager enumerateFolios]) {
-            [self openFolioFile:[self.fileManager.folioDocuments objectAtIndex:0]];
+    [self.userInterfaceManager start];
+    
+    if (self.currentFolio == nil) {
+        NSString *fileName = [self.fileManager databasePath];
+        if (fileName) {
+            [self openFolioFile:fileName];
         }
     }
 }
@@ -239,6 +199,8 @@ NSString * g_tmpDir = nil;
 //
 -(void)applicationWillEnterForeground:(UIApplication *)application
 {
+    [self.userInterfaceManager stop];
+    
     if (self.firstForegroundVisible)
     {
         [self.userInterfaceManager restoreUIState];
@@ -252,9 +214,7 @@ NSString * g_tmpDir = nil;
     // Called when the application is about to terminate.
     //
     [NSURLProtocol unregisterClass:[VedabaseURLProtocol class]];
-    
-    [self.downloadViewController cancelDownload];
-    
+     
     [self.currentFolio saveShadow];
     
 	self.currentFolio = nil;
@@ -290,41 +250,6 @@ NSString * g_tmpDir = nil;
 
 -(void)notificationReceived:(NSNotification *)note
 {
-    if ([note.name isEqualToString:kCommandOpenFolio])
-    {
-        [self performSelector:@selector(openFolioFile:)
-                   withObject:[note.userInfo objectForKey:@"fileName"]
-                   afterDelay:0];
-    }
-    else if ([note.name isEqualToString:kNotifyCollectionsListChanged])
-    {
-        /*if (self.fileManager.folioFilesDownloaded == nil) {
-            [self.fileManager resumeDownloading];
-        }*/
-
-        //[self updateNumberOfUpdates];
-        
-        //[self.fileManager checkInlineUpdatesForFile];
-        
-        if (!self.currentFolio) {
-            NSInteger folioCount = [self.fileManager.folioList count];
-            if (folioCount == 0)
-            {
-                // TODO: alert that there is need to install folio
-            }
-            else if (folioCount == 1)
-            {
-                [self sendNotificationAsync:kCommandOpenFolio objectName:@"fileName" object:[self.fileManager.folioDocuments objectAtIndex:0]];
-            }
-            else {
-                [self sendNotificationAsync:kNotifyCmdSelectFolio];
-                //            [self.currentContentView performSelectorOnMainThread:@selector(selectFolioAction:)
-                //                                                    withObject:self
-                //                                               waitUntilDone:NO];
-            }
-        }
-        
-    }
 }
 
 
@@ -480,6 +405,7 @@ NSString * g_tmpDir = nil;
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotifyFolioOpen
                                                         object:self userInfo:userInfo];
     
+    
     if (self.userInterfaceManager.folioSource)
     {
         self.userInterfaceManager.folioSource.folio = self.currentFolio;
@@ -487,71 +413,7 @@ NSString * g_tmpDir = nil;
     }
     
     [self.contentManager setFolio:self.currentFolio];
-    
-    [self.fileManager checkInlineUpdatesForFile];
 }
-
-
-
-#pragma mark -
-#pragma mark select folio dialog delegate
-
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-
-{
-    // the user clicked one of the OK/Cancel buttons
-    if (buttonIndex == 0)
-    {
-        NSFileManager * fm = [NSFileManager defaultManager];
-        NSString * str = [self.dictionaryToRemove objectForKey:@"FileName"];
-        if ([fm fileExistsAtPath:str])
-            [fm removeItemAtPath:str error:NULL];
-        str = [str stringByAppendingFormat:@".css"];
-        if ([fm fileExistsAtPath:str])
-            [fm removeItemAtPath:str error:NULL];
-        self.dictionaryToRemove = nil;
-
-        //[initialDialog refreshTable];
-    }
-    
-}
-
-
-
-#pragma mark -
-#pragma mark list of storages (both local and remote)
-
-
--(void)updateNumberOfUpdates
-{
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:kASStoreAvailable])
-        return;
-    
-    NSInteger tbuild = time(NULL);
-    long count = 0;
-    if (self.fileManager.enumerateFoliosStatus == LISTSTATUS_VALID) {
-        for (FolioFileActive * active in self.fileManager.folioFilesActive) {
-            if (active.updatePossible && active.purchased) {
-                count++;
-            }
-        }
-        for (FolioFileBase * available in self.fileManager.folioFilesAvailable) {
-            NSInteger days = (tbuild - available.tbuild)/86400;
-            if (days >= 0 && days < 7) {
-                count++;
-            }
-        }
-    }
-    
-    TGTabBarItem * barItem = [self.tabController tabBarItem:self.storeTabItemTag];
-    NSString * s = count > 0 ? [NSString stringWithFormat:@"Store (%ld)", count] : @"Store";
-    [barItem.titleLabel setText:s];
-}
-
-
-
-
 
 
 #pragma mark -
@@ -598,28 +460,10 @@ NSString * g_tmpDir = nil;
     NSLog(@"Title: %@", title);
     NSLog(@"==================================");
     
-    for(FolioFileBase * base in array)
-    {
-        NSLog(@"   %@", base.fileName);
-    }
+
     
     NSLog(@"==================================");
 }
-
-
-
-
--(void)request:(SKRequest *)request didFailWithError:(NSError *)error
-{
-    self.fileManager.remoteFilesError = YES;
-    //[[NSNotificationCenter defaultCenter] postNotificationName:kNotifyRemoteFolioListChanged object:self userInfo:nil];
-    //[self.currentStoreController performSelectorOnMainThread:@selector(remoteStorageListUpdated)
-      //                                            withObject:nil
-        //                                       waitUntilDone:NO];
-}
-
-
-
 
 
 
@@ -648,60 +492,6 @@ NSString * g_tmpDir = nil;
     NSNotification * note = [NSNotification notificationWithName:kNotifyCmdOpenUrl object:self userInfo:userInfo];
     [[NSNotificationCenter defaultCenter] performSelector:@selector(postNotification:) withObject:note afterDelay:0.1];
     
-}
-
-
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
-	sourceApplication:(NSString *)sourceApplication 
-		 annotation:(id)annotation
-{
-	NSLog(@"[VBMainServant]application:openURL: %@", url);
-    NSString * urlString = [url description];
-    if ([urlString hasPrefix:@"vbase://popup/"])
-    {
-        NSString * popupHtmlText = [currentFolio htmlTextForPopup:[urlString substringFromIndex:14]];
-        [self.userInterfaceManager showPopupWithHtmlText:popupHtmlText];
-        
-        NSLog(@"---------------------------\n%@\n----------------------------", popupHtmlText);
-        /*NSDictionary * userInfo = [NSDictionary dictionaryWithObjectsAndKeys:popupHtmlText, @"html", nil];
-        [[NSNotificationCenter defaultCenter] postNotificationName:kNotifyCmdShowHtml object:self userInfo:userInfo];*/
-    }
-    else if ([urlString hasPrefix:@"vbase://editnote/"]) {
-        NSDictionary * userInfoDict = [NSDictionary dictionaryWithObject:[[url path] substringFromIndex:1] forKey:@"record"];
-        [[NSNotificationCenter defaultCenter] postNotificationName:kNotifyCmdEditNote
-                                                            object:self
-                                                          userInfo:userInfoDict];
-    }
-    else if ([urlString hasPrefix:@"vbase://inlinepopup/"]) {
-        NSString * normalPath = [urlString substringFromIndex:20];
-        NSArray * pathComponents = [normalPath componentsSeparatedByString:@"/"];
-        if ([pathComponents count] > 2) {
-            NSString * linkType = [pathComponents objectAtIndex:0];
-            NSString * objectID = [pathComponents objectAtIndex:1];
-            NSString * popupNumber = [pathComponents objectAtIndex:2];
-            NSString * htmlText = @"";
-            
-            if ([linkType compare:@"RD"] == NSOrderedSame) {
-                htmlText = [currentFolio text:[objectID intValue] forPopupNumber:[popupNumber intValue]];
-            } else if ([linkType compare:@"DP"] == NSOrderedSame) {
-                htmlText = [currentFolio htmlTextForPopup:[FlatFileUtils decodeLinkSafeString:objectID]
-                                    forPopupNumber:[popupNumber intValue]];
-            }
-            NSLog(@"Html text to show is : %@", htmlText);
-            
-            NSDictionary * userInfo = [NSDictionary dictionaryWithObjectsAndKeys:htmlText, @"html", nil];
-            [[NSNotificationCenter defaultCenter] postNotificationName:kNotifyCmdShowHtml object:self userInfo:userInfo];
-        }
-    }
-    else if ([urlString hasPrefix:@"memory://file/"]) {
-        NSString * page = [urlString substringFromIndex:14];
-        NSDictionary * userInfo = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:[page intValue]] forKey:@"page"];
-        [[NSNotificationCenter defaultCenter] postNotificationName:kNotifyCmdShowSearchResultsPage object:self userInfo:userInfo];
-    }
-    else {
-        [self.userInterfaceManager displayTextWithRequest:url];
-    }
-	return YES;
 }
 
 #pragma mark -

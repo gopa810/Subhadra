@@ -28,9 +28,6 @@
 
 @property (retain,nonatomic) IBOutlet UIView * keyboardAccessory1;
 
-@property (retain, nonatomic) UIAlertView * alertDelete;
-
-
 - (IBAction)onButtonUpdate:(id)sender;
 - (IBAction)onButtonCancel:(id)sender;
 

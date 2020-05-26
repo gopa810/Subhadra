@@ -51,7 +51,7 @@
 
 - (IBAction)onAcceptButton:(id)sender {
     
-    SEL selector = @selector(startQueryUsingTemplate:);
+    SEL selector = NSSelectorFromString(@"startQueryUsingTemplate:");
     if (self.delegateSearch != nil && [self.delegateSearch respondsToSelector:selector])
     {
         id selectedObject = self.selectedTemplateIndex > 0 ?
@@ -78,15 +78,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)viewDidUnload {
-    [self setShadeView:nil];
-    [self setPartView:nil];
-    [self setTemplates:nil];
-    [self setTableListView:nil];
-    [self setBtnAccept:nil];
-    [super viewDidUnload];
 }
 
 

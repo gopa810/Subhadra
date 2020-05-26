@@ -21,11 +21,11 @@
 @property (weak) VBTextHistoryManager * textHistoryManager;
 @property (weak) VBUserInterfaceManager * userInterfaceManager;
 @property (weak) VBSearchManager * searchManager;
+@property (nonatomic,readonly) UIInterfaceOrientationMask supportedInterfaceOrientations;
 
 @property ETVDirectSource * folioSource;
 
 -(void)loadRecord:(NSUInteger)globalRecordId  useHighlighting:(BOOL)bUseHigh;
--(void)loadCustomURLData:(NSURLRequest *)request;
 -(void)validateHistoryButtons;
 
 -(IBAction)onGoBack:(id)sender;

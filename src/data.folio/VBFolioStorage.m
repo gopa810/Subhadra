@@ -853,6 +853,21 @@ NSDictionary * g_alternateStylesMap;
     }
 }
 
+-(int)correctionForRecord:(int)recId
+{
+    NSString * query = [NSString stringWithFormat:@"select rec2019 from histrec where rec2014 = %d", recId];
+    SQLiteCommand * cmd = [self.database createCommand:query];
+    if (cmd)
+    {
+        if ([cmd execute] == SQLITE_ROW)
+        {
+            return [cmd intValue:0];
+        }
+    }
+    
+    return -1;
+}
+
 @end
 
 

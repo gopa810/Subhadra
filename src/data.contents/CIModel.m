@@ -327,7 +327,7 @@
 
 -(CGFloat)calculateHeightForWidth:(CGFloat)width fontBook:(NSDictionary *)fontBook
 {
-    CGFloat height;
+    CGFloat height = 0;
     CGFloat widthText = width;
     CGSize estimatedTextSize;
     height = MAX(height, CHECK_MARK_AREA_WIDTH);

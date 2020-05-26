@@ -73,14 +73,6 @@
 }
 
 
-- (void)viewDidUnload {
-    [self setBookmarksTableView:nil];
-    [self setTouchBack:nil];
-    [self setBtnUpdate:nil];
-    [super viewDidUnload];
-}
-
-
 - (IBAction)onButtonUpdate:(id)sender {
     VBFolio * folio = [[VBMainServant instance] currentFolio];
     NSInteger selection = self.bookmarkListController.selectedBookmarkIndex;

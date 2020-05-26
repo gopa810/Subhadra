@@ -73,19 +73,7 @@
     //[self.barView setNeedsDisplay];
 }
 
--(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-    ///CGFloat height = [self.barView calculateHeight:self.view.frame];
-    ///[self.barView setFrame:CGRectMake(0, self.view.frame.size.height - height, self.view.frame.size.width, height)];
-    //[self.barView setNeedsDisplay];
-}
-
 -(BOOL)shouldAutorotate
-{
-    return YES;
-}
-
--(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     return YES;
 }
