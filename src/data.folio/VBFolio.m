@@ -10,12 +10,10 @@
 #import "VBFolioStorage.h"
 #import "FlatFileUtils.h"
 #import "VBMainServant.h"
-//#import "FolioFileActive.h"
 #import "VBRecordNotes.h"
 #import "VBBookmark.h"
 #import "VBUserQuery.h"
 #import "VBQueryTemplate.h"
-#import "VBFolioRecordMapping.h"
 
 @implementation VBFolio
 

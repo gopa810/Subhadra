@@ -263,7 +263,7 @@ NSString * g_tmpDir = nil;
 {
     return self.userInterfaceManager.view.frame;
     
-    CGRect mainBounds = [[UIScreen mainScreen] bounds];
+    /*CGRect mainBounds = [[UIScreen mainScreen] bounds];
     CGRect status = [[UIApplication sharedApplication] statusBarFrame];
     CGRect mainView = window.rootViewController.view.frame;
     UIDeviceOrientation ori = [[UIDevice currentDevice] orientation];
@@ -315,7 +315,7 @@ NSString * g_tmpDir = nil;
     
     
     [VBMainServant logRect:retVal name:@"retval"];
-    return retVal;
+    return retVal;*/
 }
 
 
