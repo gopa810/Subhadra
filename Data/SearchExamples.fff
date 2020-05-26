@@ -1,0 +1,86 @@
+<PT:18pt><AP:16pt><FC:100,50,0>Search Examples
+ 
+<IN:LF:36pt>Searching is case none-sensitive. The number of words in a query is not limited, but has an effect on the overall performance of searching. It is best to keep your query succinct.
+ 
+<PT:16pt><AP:12pt><BP:12pt><FC:100,50,0>Samples of Simple Queries
+ 
+<IT+><BD+>krsna balarama<IT-><BD->
+<IN:LF:36pt>This query will search all records containing both words "<IT+>krsna<IT>" and "<IT+>balarama<IT>".
+<IN:LF:36pt>There is no given order or these words. That means records will be selected also if "<IT+>balaram<IT>" is at the beginning and "<IT+>krsna<IT>" at the end of record.
+<IN:LF:36pt>This form is equivalent to other forms:
+<IN:LF:72pt><IT+>krsna and balarama<IT><BD>
+<IN:LF:72pt><IT+>krsna & balarama<IT><BD>
+<IN:LF:72pt><IT+>krsna&balarama<IT><BD>
+ 
+<IT+><BD+>krsna or balarama
+<IN:LF:36pt>This query will search all records containing either word "<IT+>krsna<IT>" or "<IT+>balarama<IT>" or both of them. Order of words is not specified.
+<IN:LF:36pt>This form is equivalent to:
+<IN:LF:72pt><IT+>krsna | balarama<IT>
+ 
+ 
+<PT:16pt><AP:12pt><BP:12pt><FC:100,50,0>More complex queries
+ 
+<IT+><BD+>radha*
+<IN:LF:36pt>This query will search all records containing the word starting with "<IT+>radha<IT>". So all words like "<IT+>radha<IT>", "<IT+>radharani<IT>", "<IT+>radha-shyamasundara<IT>" will be found.
+<IN:LF:36pt>Asterisk (*) means "any characters or empty string".
+ 
+<IT+><BD+>radh*
+<IN:LF:36pt>This is a more general case of the previous example. Not only "<IT+>radha<IT>", "<IT+>radharani<IT>", "<IT+>radha-shyamasundara<IT>", but also "<IT+>radhe<IT>", "<IT+>radhika<IT>" will be found.
+ 
+<IT+><BD+>radh?
+<IN:LF:36pt>Question mark is a wildcard substituting one character (letter or number), so "<IT+>radha<IT>", "<IT+>radhe<IT>" will be found.
+ 
+<IT+><BD+>krsna or balaram and nityananda<IT>
+<IN:LF:36pt>Operators have precedence. The "and" operator has a higher priority than "or" operator. So this query will find all records which contain either both words "<IT+>balaram<IT>" and "<IT+>nityananda<IT>" or they just contain word "<IT+>krsna<IT>".
+<IN:LF:36pt>This form is equivalent to: 
+<IN:LF:72pt><IT+>krsna | balaram & nityananda
+<IN:LF:72pt><IT+>krsna or balaram nityananada <IT>-- (without "and")
+ 
+<IT+><BD+>(krsna or balaram) nityananda
+<IN:LF:36pt>Brackets are grouping words together and also modifying the operator scope. So this query will find all records which contain either "<IT+>krsna<IT>" or "<IT+>balaram<IT>", but at the same time must contain also word "<IT+>nityananda<IT>".
+ 
+  
+<PT:16pt><AP:12pt><BP:12pt><FC:100,50,0>Phrase search
+ 
+<IT+><BD+>"arjuna said"
+<IN:LF:36pt>Quotation marks groups words into a phrase, so this query will search all records where "<IT+>arjuna<IT>" and "said" are placed one after another.
+<IN:LF:36pt>Using wildcards, brackets and operator "or" is not allowed in phrase searches (between two quotation marks). 
+ 
+ 
+<PT:16pt><AP:12pt><BP:12pt><FC:100,50,0>Query templates
+ 
+<IN:LF:36pt>Query templates are helping to search by specific predefined criteria. Default set of query templates consists of:
+ 
+<IN:LF:36pt>* Lectures
+<IN:LF:36pt>* Strings
+<IN:LF:36pt>* Verse Text Only
+<IN:LF:36pt>* Synonyms Only
+<IN:LF:36pt>* Translation Only
+<IN:LF:36pt>* Purports Only
+
+<BD+><BP:16pt>Lectures<BD> - type abbreviation of scripture and verse number. Alternatively you can type in chapter or canto.
+Examples:
+<IN:LF:36pt><BD+><IT+>bg 7.1<BD><IT>
+<IN:LF:72pt>finds all lectures given on Bhagavad-gita, Text 7.1
+<BP:8pt><IN:LF:36pt><BD+><IT+>bg 8<BD><IT>
+<IN:LF:72pt>finds all lectures given on Bhagavad-gita, Chapter 8, all texts
+<BP:8pt><IN:LF:36pt><BD+><IT+>sb 7.7.2<BD><IT>
+<IN:LF:72pt>finds all lectures given on Srimad Bhagavatam, Text 7.7.2  
+<BP:8pt><IN:LF:36pt><BD+><IT+>sb 3.5<BD><IT>
+<IN:LF:72pt>finds all lectures given on Srimad Bhagavatam, Canto 3, Chapter 5, all texts
+<BP:8pt><IN:LF:36pt><BD+><IT+>sb 9<BD><IT>
+<IN:LF:72pt>finds all lectures given on Srimad Bhagavatam, Canto 9, all chapters, all texts
+<BP:8pt><IN:LF:36pt><BD+><IT+>cc antya<BD><IT>
+<IN:LF:72pt>finds all lectures given on Sri Caitanya Caritamrta, Antya-lila, all chapters 
+<BP:8pt><IN:LF:36pt><BD+><IT+>cc antya 3<BD><IT>
+<IN:LF:72pt>finds all lectures given on Sri Caitanya Caritamrta, Antya-lila, Chapter 3, all texts
+<BP:8pt><IN:LF:36pt><BD+><IT+>cc madhya 7.1<BD><IT>
+<IN:LF:72pt>finds all lectures given on Sri Caitanya Caritamrta, Antya-lila, Text 7.1
+
+ 
+<BD+><BP:16pt>Strings<BD> - this is equivalent to phrase search, except you do not need to type in quote marks.
+<BD+><BP:16pt>Verse Text Only<BD> - only Verse Text section will be searched for given words
+<BD+><BP:16pt>Synonyms Only<BD> - only Synonyms section will be searched for given words 
+<BD+><BP:16pt>Translation Only<BD> - only Translation section will be searched for given words
+<BD+><BP:16pt>Purport Only<BD> - only purport section will be searched for given words
+
